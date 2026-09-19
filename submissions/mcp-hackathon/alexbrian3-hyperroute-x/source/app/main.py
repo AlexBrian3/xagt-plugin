@@ -2,8 +2,11 @@
 Provides health monitoring, deployment proof, optimal routing, tx building, and simulation endpoints.
 """
 
+from pathlib import Path
 from fastapi import FastAPI, HTTPException, Response, Request
+from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from typing import Dict, Any
 
 from app.config import SERVICE_NAME, SERVICE_SLUG, GIT_COMMIT
@@ -17,12 +20,17 @@ from app.router_engine import calculate_optimal_quote
 from app.tx_builder import build_swap_calldata
 from app.simulator import simulate_transaction
 from app.mcp_schemas import get_mcp_manifest, MCP_TOOLS
+from app.landing_page import get_landing_html
 
 app = FastAPI(
     title="HyperRoute X",
     description="Autonomous DeFi Route & Execution Engine for AI Agents on X Layer",
     version="1.0.0"
 )
+
+ASSETS_PATH = Path(__file__).resolve().parent.parent / "assets"
+if ASSETS_PATH.exists():
+    app.mount("/assets", StaticFiles(directory=str(ASSETS_PATH)), name="assets")
 
 # Enable CORS for agent web interfaces and ecosystem marketplaces
 app.add_middleware(
@@ -108,14 +116,18 @@ async def list_mcp_tools():
 
 
 @app.get("/", tags=["System"])
-async def root():
-    """Root metadata and entrypoint documentation."""
-    return {
-        "service": SERVICE_NAME,
-        "slug": SERVICE_SLUG,
-        "commit": GIT_COMMIT,
-        "docs_url": "/docs",
-        "mcp_tools_url": "/api/v1/mcp/tools",
-        "health_url": "/health",
-        "status": "active"
-    }
+async def root(request: Request):
+    """Root interactive visual terminal demo and metadata entrypoint."""
+    accept = request.headers.get("accept", "")
+    format_query = request.query_params.get("format", "")
+    if format_query == "json" or ("application/json" in accept and "text/html" not in accept):
+        return {
+            "service": SERVICE_NAME,
+            "slug": SERVICE_SLUG,
+            "commit": GIT_COMMIT,
+            "docs_url": "/docs",
+            "mcp_tools_url": "/api/v1/mcp/tools",
+            "health_url": "/health",
+            "status": "active"
+        }
+    return HTMLResponse(content=get_landing_html())

@@ -106,3 +106,44 @@ def test_mcp_tools_endpoint():
     assert "get_swap_quote" in tool_names
     assert "build_swap_transaction" in tool_names
     assert "simulate_swap_transaction" in tool_names
+
+
+def test_root_endpoint_html():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert "text/html" in response.headers.get("content-type", "")
+    content = response.text
+    assert "HyperRoute X" in content
+    assert "Connected to X Layer 196" in content
+    assert "Execution Terminal" in content
+    assert "ABI Calldata &amp; Simulation Engine" in content or "ABI Calldata & Simulation Engine" in content
+    assert "e8be874" in content
+    assert "tokenModalMask" in content
+    assert "tokenSearchInput" in content
+    assert "modal-token-scroll" in content
+    assert "token-icon-fallback" in content
+    assert "Routed vs Single Pool" in content
+    assert "Naive Single Pool" in content
+    assert "HyperRouteX Optimal Route" in content
+    assert "comparisonPanel" in content
+    assert "Standard swap" in content
+    assert "Force revert demo" in content
+    assert "simActivityBox" in content
+    assert "btnTryAgain" in content
+
+
+def test_root_endpoint_json():
+    # Test JSON content negotiation via Accept header
+    response = client.get("/", headers={"accept": "application/json"})
+    assert response.status_code == 200
+    data = response.json()
+    assert data["service"] == "hyperroute-x"
+    assert data["slug"] == SERVICE_SLUG
+    assert data["commit"] == GIT_COMMIT
+    assert data["status"] == "active"
+
+    # Test query param format=json
+    response_query = client.get("/?format=json")
+    assert response_query.status_code == 200
+    assert response_query.json()["slug"] == SERVICE_SLUG
+
