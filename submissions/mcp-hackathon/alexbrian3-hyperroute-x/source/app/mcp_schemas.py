@@ -99,8 +99,8 @@ def get_mcp_manifest() -> Dict[str, Any]:
     return {
         "mcpVersion": "1.0.0",
         "serverInfo": {
-            "name": "alexbrian3-agent-dex-coprocessor",
-            "title": "Agent DEX Co-Processor (X Layer)",
+            "name": "alexbrian3-hyperroute-x",
+            "title": "HyperRoute X (X Layer)",
             "version": "1.0.0",
             "description": "Autonomous DeFi Routing, ABI Calldata Serialization, and Execution Simulation on X Layer"
         },

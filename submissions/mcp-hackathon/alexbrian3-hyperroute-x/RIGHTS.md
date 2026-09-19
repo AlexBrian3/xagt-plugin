@@ -1,7 +1,7 @@
 # Submission rights declaration
 
-Project: `Agent DEX Co-Processor`
-Submission slug: `alexbrian3-agent-dex-coprocessor`
+Project: `HyperRoute X`
+Submission slug: `alexbrian3-hyperroute-x`
 Submitter: `AlexBrian3`
 Date: `2026-09-19`
 

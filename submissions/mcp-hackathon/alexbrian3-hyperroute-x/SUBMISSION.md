@@ -1,27 +1,27 @@
-# Agent DEX Co-Processor
+# HyperRoute X
 
-A lightweight, deterministic execution co-processor and optimal swap routing engine built specifically for AI agents transacting on X Layer (OKX Layer 2).
+A high-performance, deterministic execution co-processor and optimal swap routing engine built specifically for AI agents transacting on X Layer (OKX Layer 2).
 
 ## Capability
 
-- **One-line description:** Calculates mathematically optimal swap routes across X Layer liquidity pools, builds raw ABI-encoded calldata, and pre-simulates execution before broadcast.
+- **One-line description:** Calculates mathematically optimal split routes across X Layer liquidity pools, builds raw ABI-encoded calldata, and pre-simulates execution before broadcast.
 - **Who it helps:** Autonomous AI agents, algorithmic traders, DAO treasury agents, and automated portfolio managers on OKX.AI and X Layer.
 - **Capability boundary:** Performs off-chain routing optimization, EVM calldata generation (Uniswap V3-compatible SwapRouter), and pre-execution eth_call simulation. It does not custody funds, sign transactions on behalf of users, or execute smart contract auditing.
 
 ## Live API
 
-- **API base URL:** https://alexbrian3-agent-dex-coprocessor.onrender.com/api/v1
-- **Health-check URL:** https://alexbrian3-agent-dex-coprocessor.onrender.com/health
+- **API base URL:** https://alexbrian3-hyperroute-x.onrender.com/api/v1
+- **Health-check URL:** https://alexbrian3-hyperroute-x.onrender.com/health
 - **Authentication:** None (open public endpoints for hackathon verification)
 - **Rate limits / known limits:** 120 requests/minute; 10-second default RPC timeout.
-- **API contract:** OpenAPI specification available at https://alexbrian3-agent-dex-coprocessor.onrender.com/docs or in `source/app/models.py`. Standard MCP schema at `/api/v1/mcp/tools`.
+- **API contract:** OpenAPI specification available at https://alexbrian3-hyperroute-x.onrender.com/docs or in `source/app/models.py`. Standard MCP schema at `/api/v1/mcp/tools`.
 
 ## Source and reproducibility
 
 - **Source repository:** https://github.com/AlexBrian3/xagt-plugin
 - **Review commit:** `e8be87499fdf6f977051fa3b2d1fb0d916322e8d`
 - **Source submitted in this PR:** `source/`
-- **Run tests:** `pytest submissions/mcp-hackathon/alexbrian3-agent-dex-coprocessor/source/tests`
+- **Run tests:** `pytest submissions/mcp-hackathon/alexbrian3-hyperroute-x/source/tests`
 - **Run locally:** `uvicorn app.main:app --host 0.0.0.0 --port 8000` (from inside `source/`)
 - **Deploy:** Deploy container using `source/Dockerfile` to any container cloud (Render, Railway, Fly.io).
 - **Version binding:** The service reports the review commit in the `/health` response body, the `x-source-commit` HTTP header, and the `/.well-known/xagent-verification.json` endpoint.
@@ -29,21 +29,21 @@ A lightweight, deterministic execution co-processor and optimal swap routing eng
 The API exposes:
 
 ```json
-// GET https://alexbrian3-agent-dex-coprocessor.onrender.com/health
+// GET https://alexbrian3-hyperroute-x.onrender.com/health
 {
   "status": "ok",
   "commit": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d",
   "version": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d",
-  "slug": "alexbrian3-agent-dex-coprocessor",
+  "slug": "alexbrian3-hyperroute-x",
   "network": "xlayer-mainnet"
 }
 ```
 
 ```json
-// GET https://alexbrian3-agent-dex-coprocessor.onrender.com/.well-known/xagent-verification.json
+// GET https://alexbrian3-hyperroute-x.onrender.com/.well-known/xagent-verification.json
 {
   "schemaVersion": 1,
-  "slug": "alexbrian3-agent-dex-coprocessor",
+  "slug": "alexbrian3-hyperroute-x",
   "commit": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d"
 }
 ```

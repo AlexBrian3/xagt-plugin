@@ -3,13 +3,13 @@
 ## Prerequisites
 
 - Review commit: `e8be87499fdf6f977051fa3b2d1fb0d916322e8d`
-- API base URL: `https://alexbrian3-agent-dex-coprocessor.onrender.com/api/v1`
+- API base URL: `https://alexbrian3-hyperroute-x.onrender.com/api/v1`
 - Authentication: `None required (open public endpoints for hackathon review)`
 
 ## 1. Health check
 
 ```bash
-curl --fail --silent --show-error https://alexbrian3-agent-dex-coprocessor.onrender.com/health
+curl --fail --silent --show-error https://alexbrian3-hyperroute-x.onrender.com/health
 ```
 
 Expected response:
@@ -19,7 +19,7 @@ Expected response:
   "status": "ok",
   "commit": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d",
   "version": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d",
-  "slug": "alexbrian3-agent-dex-coprocessor",
+  "slug": "alexbrian3-hyperroute-x",
   "network": "xlayer-mainnet"
 }
 ```
@@ -27,7 +27,7 @@ Expected response:
 ## 2. Deployment proof
 
 ```bash
-curl --fail --silent --show-error https://alexbrian3-agent-dex-coprocessor.onrender.com/.well-known/xagent-verification.json
+curl --fail --silent --show-error https://alexbrian3-hyperroute-x.onrender.com/.well-known/xagent-verification.json
 ```
 
 Expected response:
@@ -35,7 +35,7 @@ Expected response:
 ```json
 {
   "schemaVersion": 1,
-  "slug": "alexbrian3-agent-dex-coprocessor",
+  "slug": "alexbrian3-hyperroute-x",
   "commit": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d"
 }
 ```
@@ -44,7 +44,7 @@ Expected response:
 
 ```bash
 curl --fail --silent --show-error \
-  --request POST https://alexbrian3-agent-dex-coprocessor.onrender.com/api/v1/quote \
+  --request POST https://alexbrian3-hyperroute-x.onrender.com/api/v1/quote \
   --header "content-type: application/json" \
   --data '{"token_in":"OKB","token_out":"USDT","amount_in":"1.0","max_slippage_bps":50}'
 ```
@@ -90,7 +90,7 @@ Expected success response:
 Safe error behavior:
 ```bash
 curl --silent --show-error \
-  --request POST https://alexbrian3-agent-dex-coprocessor.onrender.com/api/v1/quote \
+  --request POST https://alexbrian3-hyperroute-x.onrender.com/api/v1/quote \
   --header "content-type: application/json" \
   --data '{"token_in":"OKB","token_out":"OKB","amount_in":"1.0"}'
 ```

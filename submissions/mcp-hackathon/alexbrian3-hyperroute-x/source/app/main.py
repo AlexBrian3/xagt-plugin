@@ -19,7 +19,7 @@ from app.simulator import simulate_transaction
 from app.mcp_schemas import get_mcp_manifest, MCP_TOOLS
 
 app = FastAPI(
-    title="Agent DEX Co-Processor",
+    title="HyperRoute X",
     description="Autonomous DeFi Route & Execution Engine for AI Agents on X Layer",
     version="1.0.0"
 )

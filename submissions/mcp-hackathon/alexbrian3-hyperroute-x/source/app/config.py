@@ -1,12 +1,12 @@
-"""Configuration module for Agent DEX Co-processor on X Layer.
+"""Configuration module for HyperRoute X on X Layer.
 Provides network settings, contract addresses, token registry, and commit metadata.
 """
 
 import os
 
 # Identification & Commit binding
-SERVICE_NAME = "agent-dex-coprocessor"
-SERVICE_SLUG = "alexbrian3-agent-dex-coprocessor"
+SERVICE_NAME = "hyperroute-x"
+SERVICE_SLUG = "alexbrian3-hyperroute-x"
 DEFAULT_COMMIT = "e8be87499fdf6f977051fa3b2d1fb0d916322e8d"
 GIT_COMMIT = os.getenv("GIT_COMMIT", DEFAULT_COMMIT)
 
