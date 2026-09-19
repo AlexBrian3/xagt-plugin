@@ -1,9 +1,6 @@
-"""HyperRoute X — Cinematic Deep Space & Chrome Sci-Fi Landing Page.
-Inspired by the Orvion Space monochrome cinematic cosmos aesthetic:
-- Deep space obsidian (#000000) with liquid chrome metallic typography.
-- High-contrast monochromatic space imagery (orbital satellite & lunar astronaut).
-- Minimalist tactical typography with dotted boundary cards and corner bracket ticks.
-- Full autonomous DeFi execution terminal: multi-pool split routing, calldata builder, and pre-flight RPC simulator.
+"""HyperRoute X — Autonomous DeFi Co-Processor on OKX X Layer.
+Calculates mathematically optimal split routes, generates raw unsigned ABI calldata,
+and pre-simulates execution before broadcast.
 """
 
 from pathlib import Path
@@ -54,7 +51,7 @@ SVG_WBTC = _read_svg_or_fallback(
 
 
 def get_landing_html() -> str:
-    """Generate the cinematic deep space & chrome sci-fi terminal landing page inspired by Orvion Space."""
+    """Generate the HyperRoute X exchange terminal and capability landing page."""
     return f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -125,7 +122,7 @@ def get_landing_html() -> str:
     /* =========================================================================
        TOP NAVIGATION BAR (Matching Orvion Space Top Row)
        ========================================================================= */
-    .orvion-nav-header {{
+    .hrx-nav-header {{
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -133,7 +130,7 @@ def get_landing_html() -> str:
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }}
 
-    .orvion-brand-title {{
+    .hrx-brand-title {{
       font-family: 'Syncopate', sans-serif;
       font-size: 14px;
       font-weight: 700;
@@ -146,13 +143,13 @@ def get_landing_html() -> str:
       gap: 10px;
     }}
 
-    .orvion-nav-links {{
+    .hrx-nav-links {{
       display: flex;
       align-items: center;
       gap: 32px;
     }}
 
-    .orvion-nav-link {{
+    .hrx-nav-link {{
       color: var(--text-muted);
       text-decoration: none;
       font-family: 'Space Grotesk', sans-serif;
@@ -165,17 +162,17 @@ def get_landing_html() -> str:
       gap: 8px;
     }}
 
-    .orvion-nav-link::before {{
+    .hrx-nav-link::before {{
       content: "•";
       color: var(--text-dim);
       font-size: 14px;
     }}
 
-    .orvion-nav-link:hover {{
+    .hrx-nav-link:hover {{
       color: #FFFFFF;
     }}
 
-    .orvion-nav-actions {{
+    .hrx-nav-actions {{
       display: flex;
       align-items: center;
       gap: 16px;
@@ -978,7 +975,7 @@ def get_landing_html() -> str:
     /* =========================================================================
        FOOTER (Matching Orvion Space Bottom Row)
        ========================================================================= */
-    .orvion-footer {{
+    .hrx-footer {{
       padding: 48px 0 24px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
@@ -1035,7 +1032,7 @@ def get_landing_html() -> str:
       .space-astronaut-card {{ grid-column: span 1; }}
       .terminal-dual-grid {{ grid-template-columns: 1fr; }}
       .comp-grid {{ grid-template-columns: 1fr; }}
-      .orvion-nav-links {{ display: none; }}
+      .hrx-nav-links {{ display: none; }}
     }}
 
     /* Wallet Extension Picker Styles */
@@ -1095,20 +1092,20 @@ def get_landing_html() -> str:
   <div class="page-container">
 
     <!-- Top Navigation Header -->
-    <header class="orvion-nav-header">
-      <a href="/" class="orvion-brand-title">
+    <header class="hrx-nav-header">
+      <a href="/" class="hrx-brand-title">
         <span>HYPERROUTE X</span>
       </a>
 
-      <nav class="orvion-nav-links">
-        <a href="#terminalSection" class="orvion-nav-link">Terminal</a>
-        <a href="#manifestoSection" class="orvion-nav-link">About Protocol</a>
-        <a href="#comparisonSection" class="orvion-nav-link">Benchmarks</a>
-        <a href="/docs" target="_blank" class="orvion-nav-link">Docs</a>
-        <a href="/health" target="_blank" class="orvion-nav-link">Health</a>
+      <nav class="hrx-nav-links">
+        <a href="#terminalSection" class="hrx-nav-link">Terminal</a>
+        <a href="#manifestoSection" class="hrx-nav-link">About Protocol</a>
+        <a href="#comparisonSection" class="hrx-nav-link">Benchmarks</a>
+        <a href="/docs" target="_blank" class="hrx-nav-link">Docs</a>
+        <a href="/health" target="_blank" class="hrx-nav-link">Health</a>
       </nav>
 
-      <div class="orvion-nav-actions">
+      <div class="hrx-nav-actions">
         <!-- Connect Wallet Button -->
         <button class="btn-tactical-outline" id="connectWalletBtn" onclick="openWalletModal()" aria-label="Connect Web3 Wallet">
           <span class="wallet-status-dot" id="walletStatusDot"></span>
@@ -1463,7 +1460,7 @@ receipt = agent_wallet.send_transaction(tx)
     </section>
 
     <!-- Footer -->
-    <footer class="orvion-footer">
+    <footer class="hrx-footer">
       <div class="footer-top-row">
         <div class="footer-huge-brand">HYPERROUTE X</div>
         <nav class="footer-nav-links">
