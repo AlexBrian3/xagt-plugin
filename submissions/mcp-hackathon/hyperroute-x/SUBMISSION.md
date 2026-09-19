@@ -10,18 +10,18 @@ A high-performance, deterministic execution co-processor and optimal swap routin
 
 ## Live API
 
-- **API base URL:** https://alexbrian3-hyperroute-x.onrender.com/api/v1
-- **Health-check URL:** https://alexbrian3-hyperroute-x.onrender.com/health
+- **API base URL:** https://hyperroute-x.onrender.com/api/v1
+- **Health-check URL:** https://hyperroute-x.onrender.com/health
 - **Authentication:** None (open public endpoints for hackathon verification)
 - **Rate limits / known limits:** 120 requests/minute; 10-second default RPC timeout.
-- **API contract:** OpenAPI specification available at https://alexbrian3-hyperroute-x.onrender.com/docs or in `source/app/models.py`. Standard MCP schema at `/api/v1/mcp/tools`.
+- **API contract:** OpenAPI specification available at https://hyperroute-x.onrender.com/docs or in `source/app/models.py`. Standard MCP schema at `/api/v1/mcp/tools`.
 
 ## Source and reproducibility
 
 - **Source repository:** https://github.com/AlexBrian3/xagt-plugin
 - **Review commit:** `e8be87499fdf6f977051fa3b2d1fb0d916322e8d`
 - **Source submitted in this PR:** `source/`
-- **Run tests:** `pytest submissions/mcp-hackathon/alexbrian3-hyperroute-x/source/tests`
+- **Run tests:** `pytest submissions/mcp-hackathon/hyperroute-x/source/tests`
 - **Run locally:** `uvicorn app.main:app --host 0.0.0.0 --port 8000` (from inside `source/`)
 - **Deploy:** Deploy container using `source/Dockerfile` to any container cloud (Render, Railway, Fly.io).
 - **Version binding:** The service reports the review commit in the `/health` response body, the `x-source-commit` HTTP header, and the `/.well-known/xagent-verification.json` endpoint.
@@ -29,21 +29,21 @@ A high-performance, deterministic execution co-processor and optimal swap routin
 The API exposes:
 
 ```json
-// GET https://alexbrian3-hyperroute-x.onrender.com/health
+// GET https://hyperroute-x.onrender.com/health
 {
   "status": "ok",
   "commit": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d",
   "version": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d",
-  "slug": "alexbrian3-hyperroute-x",
+  "slug": "hyperroute-x",
   "network": "xlayer-mainnet"
 }
 ```
 
 ```json
-// GET https://alexbrian3-hyperroute-x.onrender.com/.well-known/xagent-verification.json
+// GET https://hyperroute-x.onrender.com/.well-known/xagent-verification.json
 {
   "schemaVersion": 1,
-  "slug": "alexbrian3-hyperroute-x",
+  "slug": "hyperroute-x",
   "commit": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d"
 }
 ```

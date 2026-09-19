@@ -243,49 +243,13 @@ def get_landing_html() -> str:
     }}
 
     /* =========================================================================
-       HERO SECTION (Massive Chrome Typography + Orbital Satellite Banner)
+       HERO SECTION (Orbital Satellite Banner)
        ========================================================================= */
     .hero-cinematic-stage {{
       position: relative;
       width: 100%;
-      margin: 32px 0 64px;
+      margin: 24px 0 64px;
       overflow: hidden;
-    }}
-
-    .hero-chrome-heading-wrap {{
-      text-align: center;
-      margin-bottom: -24px;
-      position: relative;
-      z-index: 2;
-      padding: 0 16px;
-    }}
-
-    .orvion-hero-title-main {{
-      font-family: 'Syncopate', 'Orbitron', sans-serif;
-      font-size: clamp(24px, 5.8vw, 78px);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      line-height: 0.95;
-      background: var(--chrome-silver);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.95));
-      display: block;
-      white-space: nowrap;
-    }}
-
-    .orvion-hero-title-sub {{
-      font-family: 'Syncopate', sans-serif;
-      font-size: clamp(12px, 2.4vw, 30px);
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      line-height: 1.1;
-      color: rgba(255, 255, 255, 0.55);
-      display: block;
-      margin-top: 6px;
-      white-space: nowrap;
     }}
 
     /* Satellite Stage Artwork */
@@ -1154,14 +1118,9 @@ def get_landing_html() -> str:
     </header>
 
     <!-- =========================================================================
-         HERO SECTION: Giant Chrome Title + Orbital Satellite Viewport
+         HERO SECTION: Orbital Satellite Viewport
          ========================================================================= -->
     <section class="hero-cinematic-stage">
-      <div class="hero-chrome-heading-wrap">
-        <h1 class="orvion-hero-title-main">HYPERROUTE</h1>
-        <span class="orvion-hero-title-sub">SPACE // X LAYER</span>
-      </div>
-
       <div class="hero-satellite-viewport">
         <img src="/assets/space-satellite.jpg" alt="HyperRoute X Deep Space Orbital Satellite" class="hero-satellite-img" />
         <div class="hero-satellite-overlay"></div>

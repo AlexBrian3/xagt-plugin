@@ -6,7 +6,7 @@ import os
 
 # Identification & Commit binding
 SERVICE_NAME = "hyperroute-x"
-SERVICE_SLUG = "alexbrian3-hyperroute-x"
+SERVICE_SLUG = "hyperroute-x"
 DEFAULT_COMMIT = "e8be87499fdf6f977051fa3b2d1fb0d916322e8d"
 GIT_COMMIT = os.getenv("GIT_COMMIT", DEFAULT_COMMIT)
 

@@ -1,7 +1,7 @@
 # Submission rights declaration
 
 Project: `HyperRoute X`
-Submission slug: `alexbrian3-hyperroute-x`
+Submission slug: `hyperroute-x`
 Submitter: `AlexBrian3`
 Date: `2026-09-19`
 
