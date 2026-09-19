@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Review commit: `239140cc04dc82a121e9c31199bc8a12b510e130`
+- Review commit: `e8be87499fdf6f977051fa3b2d1fb0d916322e8d`
 - API base URL: `https://alexbrian3-agent-dex-coprocessor.onrender.com/api/v1`
 - Authentication: `None required (open public endpoints for hackathon review)`
 
@@ -17,8 +17,8 @@ Expected response:
 ```json
 {
   "status": "ok",
-  "commit": "239140cc04dc82a121e9c31199bc8a12b510e130",
-  "version": "239140cc04dc82a121e9c31199bc8a12b510e130",
+  "commit": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d",
+  "version": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d",
   "slug": "alexbrian3-agent-dex-coprocessor",
   "network": "xlayer-mainnet"
 }
@@ -36,7 +36,7 @@ Expected response:
 {
   "schemaVersion": 1,
   "slug": "alexbrian3-agent-dex-coprocessor",
-  "commit": "239140cc04dc82a121e9c31199bc8a12b510e130"
+  "commit": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d"
 }
 ```
 

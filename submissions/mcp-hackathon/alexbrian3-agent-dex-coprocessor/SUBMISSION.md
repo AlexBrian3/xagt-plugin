@@ -19,7 +19,7 @@ A lightweight, deterministic execution co-processor and optimal swap routing eng
 ## Source and reproducibility
 
 - **Source repository:** https://github.com/AlexBrian3/xagt-plugin
-- **Review commit:** `239140cc04dc82a121e9c31199bc8a12b510e130`
+- **Review commit:** `e8be87499fdf6f977051fa3b2d1fb0d916322e8d`
 - **Source submitted in this PR:** `source/`
 - **Run tests:** `pytest submissions/mcp-hackathon/alexbrian3-agent-dex-coprocessor/source/tests`
 - **Run locally:** `uvicorn app.main:app --host 0.0.0.0 --port 8000` (from inside `source/`)
@@ -32,8 +32,8 @@ The API exposes:
 // GET https://alexbrian3-agent-dex-coprocessor.onrender.com/health
 {
   "status": "ok",
-  "commit": "239140cc04dc82a121e9c31199bc8a12b510e130",
-  "version": "239140cc04dc82a121e9c31199bc8a12b510e130",
+  "commit": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d",
+  "version": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d",
   "slug": "alexbrian3-agent-dex-coprocessor",
   "network": "xlayer-mainnet"
 }
@@ -44,7 +44,7 @@ The API exposes:
 {
   "schemaVersion": 1,
   "slug": "alexbrian3-agent-dex-coprocessor",
-  "commit": "239140cc04dc82a121e9c31199bc8a12b510e130"
+  "commit": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d"
 }
 ```
 
