@@ -114,22 +114,16 @@ def test_root_endpoint_html():
     assert "text/html" in response.headers.get("content-type", "")
     content = response.text
     assert "HyperRoute X" in content
-    assert "Connected to X Layer 196" in content
-    assert "Execution Terminal" in content
-    assert "ABI Calldata &amp; Simulation Engine" in content or "ABI Calldata & Simulation Engine" in content
-    assert "e8be874" in content
+    assert "X Layer" in content
     assert "tokenModalMask" in content
     assert "tokenSearchInput" in content
-    assert "modal-token-scroll" in content
-    assert "token-icon-fallback" in content
-    assert "Routed vs Single Pool" in content
-    assert "Naive Single Pool" in content
-    assert "HyperRouteX Optimal Route" in content
-    assert "comparisonPanel" in content
-    assert "Standard swap" in content
-    assert "Force revert demo" in content
-    assert "simActivityBox" in content
-    assert "btnTryAgain" in content
+    assert "walletModalMask" in content
+    assert "starsCanvas" in content
+    assert "modalTokenList" in content
+    assert "connectWalletBtn" in content
+    assert "conduitPixels" in content
+    assert "COMMIT" in content
+
 
 
 def test_root_endpoint_json():
