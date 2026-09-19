@@ -29,12 +29,17 @@ ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets" / "tokens"
 
 def _read_svg_or_fallback(filename: str, fallback_svg: str) -> str:
     path = ASSETS_DIR / filename
+    raw = ""
     try:
         if path.exists():
-            return path.read_text(encoding="utf-8").strip()
+            raw = path.read_text(encoding="utf-8").strip()
     except Exception:
         pass
-    return fallback_svg.strip()
+    if not raw:
+        raw = fallback_svg.strip()
+    import re
+    cleaned = re.sub(r"<!--.*?-->", "", raw, flags=re.DOTALL).strip()
+    return cleaned
 
 
 SVG_OKB = _read_svg_or_fallback(
@@ -80,6 +85,15 @@ def get_landing_html() -> str:
         document.documentElement.setAttribute('data-theme', 'dark');
       }}
     }})();
+
+    function toggleTheme() {{
+      var current = document.documentElement.getAttribute("data-theme") || "dark";
+      var next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try {{
+        localStorage.setItem("hyperroute_theme", next);
+      }} catch (e) {{}}
+    }}
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HyperRoute X | Autonomous DeFi Co-Processor on X Layer</title>
@@ -2170,7 +2184,7 @@ def get_landing_html() -> str:
             <span>PAY FROM AGENT WALLET</span>
             <span class="balance-link" onclick="setAmountPercentage(100)">
               Balance: <span id="tokenInBalance">142.50</span>
-              <span id="tokenInBalanceIcon"></span>
+              <span id="tokenInBalanceIcon"><div class="token-icon-wrap-16" style="width:16px; height:16px;">{SVG_OKB}</div></span>
               <span id="tokenInSymbolLabel">OKB</span>
             </span>
           </div>
@@ -2178,7 +2192,7 @@ def get_landing_html() -> str:
             <input type="number" id="amountInInput" class="token-amount-input" value="10.0" step="any" min="0" placeholder="0.0" oninput="onAmountChanged()">
             <!-- Fixed size 20px token icon selector button -->
             <button class="token-pick-btn" onclick="openTokenModal('in')">
-              <span id="tokenInIconWrap"></span>
+              <span id="tokenInIconWrap"><div class="token-icon-wrap-20" style="width:20px; height:20px;">{SVG_OKB}</div></span>
               <span id="tokenInSymbol">OKB</span>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </button>
@@ -2206,7 +2220,7 @@ def get_landing_html() -> str:
             <span>RECEIVE GUARANTEED OUTPUT</span>
             <span class="balance-link">
               Balance: <span id="tokenOutBalance">12,850.00</span>
-              <span id="tokenOutBalanceIcon"></span>
+              <span id="tokenOutBalanceIcon"><div class="token-icon-wrap-16" style="width:16px; height:16px;">{SVG_USDT}</div></span>
               <span id="tokenOutSymbolLabel">USDT</span>
             </span>
           </div>
@@ -2214,7 +2228,7 @@ def get_landing_html() -> str:
             <input type="text" id="amountOutInput" class="token-amount-input" value="484.27" readonly>
             <!-- Fixed size 20px token icon selector button -->
             <button class="token-pick-btn" onclick="openTokenModal('out')">
-              <span id="tokenOutIconWrap"></span>
+              <span id="tokenOutIconWrap"><div class="token-icon-wrap-20" style="width:20px; height:20px;">{SVG_USDT}</div></span>
               <span id="tokenOutSymbol">USDT</span>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </button>
@@ -2236,7 +2250,7 @@ def get_landing_html() -> str:
               <!-- Input Node with 32px Fixed Round Icon -->
               <rect x="8" y="15" width="60" height="60" class="svg-node-box" />
               <foreignObject x="22" y="21" width="32" height="32" id="svgInForeign">
-                <div id="svgInIconContainer" class="token-icon-wrap-32"></div>
+                <div id="svgInIconContainer" class="token-icon-wrap-32"><div class="token-icon-wrap-32" style="width:32px; height:32px;">{SVG_OKB}</div></div>
               </foreignObject>
               <text x="38" y="66" text-anchor="middle" class="svg-node-title" id="svgInSym">OKB</text>
 
@@ -2265,7 +2279,7 @@ def get_landing_html() -> str:
               <!-- Output Node with 32px Fixed Round Icon -->
               <rect x="392" y="15" width="60" height="60" class="svg-node-box" />
               <foreignObject x="406" y="21" width="32" height="32" id="svgOutForeign">
-                <div id="svgOutIconContainer" class="token-icon-wrap-32"></div>
+                <div id="svgOutIconContainer" class="token-icon-wrap-32"><div class="token-icon-wrap-32" style="width:32px; height:32px;">{SVG_USDT}</div></div>
               </foreignObject>
               <text x="422" y="66" text-anchor="middle" class="svg-node-title" id="svgOutSym">USDT</text>
             </svg>
@@ -3538,7 +3552,7 @@ tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)`;
             <div>
               <div style="font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 6px;">
                 ${{tok.symbol}}
-                ${{isSelected ? '<span style="font-size: 12px; color: var(--status-success); font-family: \'JetBrains Mono\';">SELECTED</span>' : ''}}
+                ${{isSelected ? '<span class="tabular" style="font-size: 12px; color: var(--status-success);">SELECTED</span>' : ''}}
               </div>
               <div style="font-size: 12px; color: var(--text-muted);">${{tok.name}}</div>
             </div>
@@ -3548,7 +3562,16 @@ tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)`;
             <div style="font-size: 12px; color: var(--text-muted);">≈ $${{(parseFloat(tok.balance.replace(/,/g, '')) * tok.priceUsd).toLocaleString(undefined, {{ maximumFractionDigits: 0 }})}}</div>
           </div>
         `;
+        row.setAttribute("tabindex", "0");
+        row.setAttribute("role", "button");
+        row.setAttribute("aria-label", "Select " + tok.symbol + " (" + tok.name + ")");
         row.onclick = () => selectModalToken(tok.symbol);
+        row.onkeydown = (e) => {{
+          if (e.key === "Enter" || e.key === " ") {{
+            e.preventDefault();
+            selectModalToken(tok.symbol);
+          }}
+        }};
         list.appendChild(row);
       }});
     }}
@@ -3884,7 +3907,7 @@ tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)`;
         showToast("Please connect your wallet first");
         return;
       }}
-      if (!currentTxData) {{
+      if (!currentTx) {{
         showToast("Generating transaction payload...");
         await fetchQuote();
       }}
@@ -3893,8 +3916,8 @@ tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)`;
         showToast("Sending swap transaction to wallet...");
         const txParams = {{
           from: connectedWalletAccount,
-          to: currentTxData ? currentTxData.to : "{DEFAULT_ROUTER_ADDRESS}",
-          data: currentTxData ? currentTxData.data : "0x04e45aaf",
+          to: currentTx ? currentTx.to : "{DEFAULT_ROUTER_ADDRESS}",
+          data: currentTx ? currentTx.data : "0x04e45aaf",
           value: currentTokenIn === "OKB" ? "0x" + (BigInt(currentQuote ? currentQuote.amount_in_base_units : "1000000000000000000")).toString(16) : "0x0"
         }};
         const txHash = await window.ethereum.request({{
@@ -3909,7 +3932,7 @@ tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)`;
     }}
 
     // Initial Launch
-    window.addEventListener("DOMContentLoaded", () => {{
+    function initApp() {{
       initHeroPixelGrid();
       buildLiquidityConduitGrid();
       updateTokenSelectorUI();
@@ -3946,7 +3969,13 @@ tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)`;
         const gasFill = document.getElementById("gasBarFill");
         if (gasFill) gasFill.style.width = "55%";
       }}, 500);
-    }});
+    }}
+
+    if (document.readyState === "loading") {{
+      document.addEventListener("DOMContentLoaded", initApp);
+    }} else {{
+      initApp();
+    }}
   </script>
 </body>
 </html>"""
