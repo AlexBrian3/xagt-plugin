@@ -10,11 +10,11 @@ A high-performance, deterministic execution co-processor and optimal swap routin
 
 ## Live API
 
-- **API base URL:** https://hyperroute-x.onrender.com/api/v1
-- **Health-check URL:** https://hyperroute-x.onrender.com/health
+- **API base URL:** https://alexbrian3-hyperroute-x.onrender.com/api/v1
+- **Health-check URL:** https://alexbrian3-hyperroute-x.onrender.com/health
 - **Authentication:** None (open public endpoints for hackathon verification)
 - **Rate limits / known limits:** 120 requests/minute; 10-second default RPC timeout.
-- **API contract:** OpenAPI specification available at https://hyperroute-x.onrender.com/docs or in `source/app/models.py`. Standard MCP schema at `/api/v1/mcp/tools`.
+- **API contract:** OpenAPI specification available at https://alexbrian3-hyperroute-x.onrender.com/docs or in `source/app/models.py`. Standard MCP schema at `/api/v1/mcp/tools`.
 
 ## Source and reproducibility
 
@@ -29,7 +29,7 @@ A high-performance, deterministic execution co-processor and optimal swap routin
 The API exposes:
 
 ```json
-// GET https://hyperroute-x.onrender.com/health
+// GET https://alexbrian3-hyperroute-x.onrender.com/health
 {
   "status": "ok",
   "commit": "e8be87499fdf6f977051fa3b2d1fb0d916322e8d",
@@ -40,7 +40,7 @@ The API exposes:
 ```
 
 ```json
-// GET https://hyperroute-x.onrender.com/.well-known/xagent-verification.json
+// GET https://alexbrian3-hyperroute-x.onrender.com/.well-known/xagent-verification.json
 {
   "schemaVersion": 1,
   "slug": "hyperroute-x",
